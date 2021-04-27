@@ -1,0 +1,66 @@
+
+<link rel="stylesheet" href="punto2.component.css">
+<div class="formulario">
+
+
+    <form>
+        <div class="form-group">
+            <label for="idusuario">Usuario</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario" id="" aria-describedby="emailHelp" placeholder="" name="idusuario">
+    
+        </div>
+        <div class="form-group">
+            <label for="idnombreOrganizacion">nombreOrganización</label>
+            <input type="text" class="form-control" id="" placeholder="" [(ngModel)]="nombreOrganizacion" name="idnombreOrganizacion">
+        </div>
+        <small id="emailHelp" class="form-text text-muted">requiereConstancia Si / No</small>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="" [(ngModel)]="solicitaConstancia"  name="idsolicitaConstancia">
+            <label class="form-check-label" for="">haga click en la casilla si necesita una constancia</label>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="registrarce()">Registrar</button>
+    </form>
+
+
+</div>
+
+<br>
+
+<!--formulario //////////-->
+
+<table class="table table-striped" [mfData]="asistente" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th style="width: 20%">
+                <mfDefaultSorter by="usuario">Orden</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="solicitaConstancia">Usuario</mfDefaultSorter>
+            </th>
+            <th style="width: 30%">
+                <mfDefaultSorter by="nombreOrganizacion">nombreOrganizacion</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="solicitaConstancia">solicitaConstancia</mfDefaultSorter>
+            </th>
+  
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of asistente ; index as i">
+            <td>{{i+1}}</td>
+            <td>{{item.usuario}}</td>
+            <td>{{item.nombreOrganizacion | uppercase}}</td>
+            <td class="text-right">{{item.solicitaConstancia}}</td>
+     
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>
